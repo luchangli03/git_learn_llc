@@ -17,10 +17,6 @@ for n=1:FiducialFluoNum
         PosSel = (fcnt-1)*GroupFrameNum+1:fcnt*GroupFrameNum;
         FiducialFluo_CurGroup = FiducialFluo_XYPosArry(PosSel,fsel);
 
-%         plot(FiducialFluo_CurGroup(:,1),FiducialFluo_CurGroup(:,2),'x')
-%         hold on
-%         plot(MeanCenterPos(:,1),MeanCenterPos(:,2),'o')
-      
          % filter some bad points
         [FiducialFluo_CurGroup1]=FilterOutFluo(FiducialFluo_CurGroup, 3.5, 2);
         MeanCenterPos=mean(FiducialFluo_CurGroup1,1);

@@ -13,6 +13,7 @@ pos = LocArry(:,9) > SNRth;
 LocArry_s = LocArry(pos,:);
 
 
+
 TotalFrameNum = LocArry_s(end,end);
 EndFramePos = strfind(LocArry_s(:,end)',TotalFrameNum);
 
@@ -50,7 +51,6 @@ F1FluoNum=sum(LocArry_s(:,end)==1);
 ConsectiveNum=ones(1,F1FluoNum);
 
 for i=1:F1FluoNum
-    
     CurID=i;
     NextID=BackwardId(CurID);
         
