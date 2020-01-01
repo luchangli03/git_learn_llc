@@ -2,7 +2,6 @@
 GroupFrameNum = 200;
 XYPosSel = 2:3; % 2,3:x,y
 
-
 %% drift calculation for each group
 TotalFrameNum = LocArry(end,end);
 
@@ -18,8 +17,6 @@ for n=1:FiducialFluoNum
         PosSel = (fcnt-1)*GroupFrameNum+1:fcnt*GroupFrameNum;
         FiducialFluo_CurGroup = FiducialFluo_XYPosArry(PosSel,fsel);
 
-%         MeanCenterPos=mean(FiducialFluo_CurGroup,1);
-        
 %         plot(FiducialFluo_CurGroup(:,1),FiducialFluo_CurGroup(:,2),'x')
 %         hold on
 %         plot(MeanCenterPos(:,1),MeanCenterPos(:,2),'o')
@@ -28,12 +25,7 @@ for n=1:FiducialFluoNum
         [FiducialFluo_CurGroup1]=FilterOutFluo(FiducialFluo_CurGroup, 3.5, 2);
         MeanCenterPos=mean(FiducialFluo_CurGroup1,1);
        
-
-%         plot(FiducialFluo_CurGroup1(:,1),FiducialFluo_CurGroup1(:,2),'x')
-%         plot(MeanCenterPos(:,1),MeanCenterPos(:,2),'o')
-        
         FiducialFluo_XYMeanDat(fcnt,fsel) = MeanCenterPos;
-
     end
 end
 
@@ -58,7 +50,6 @@ hold on
 % plot(YDrift_Group(:,1))
 % plot(YDrift_Group(:,2))
 plot(GroupFrame,YDrift_Group_Mean)
-
 
 %% drift for each frame by linear interpolation
 XDrift_EachFrame=zeros(TotalFrameNum,1);
@@ -92,17 +83,14 @@ plot(YDrift_EachFrame)
 
 
 %% apply drift
-
 LocArry_DriftCorr=LocArry;
 
 for fcnt=1:TotalFrameNum
     fcnt
     pos = LocArry(:,end)==fcnt;
-
     
    	LocArry_DriftCorr(pos,XYPosSel(1)) = LocArry(pos,XYPosSel(1))-XDrift_EachFrame(fcnt);
    	LocArry_DriftCorr(pos,XYPosSel(2)) = LocArry(pos,XYPosSel(2))-YDrift_EachFrame(fcnt);
-    
     
 end
 
