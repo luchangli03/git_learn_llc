@@ -14,7 +14,6 @@ LocArry_s = LocArry(pos,:);
 
 
 %% link fiducial markers
-
 TotalFrameNum = LocArry_s(end,end);
 EndFramePos = strfind(LocArry_s(:,end)',TotalFrameNum);
 
@@ -23,7 +22,6 @@ DatLen = size(LocArry_s,1);
 BackwardId = zeros(1,DatLen);
 ForwardID = zeros(1,DatLen);
 LastFrame = 0;
-
 
 for i = 1:(EndFramePos(1)-1)
     curFrame=LocArry_s(i,end);
@@ -48,13 +46,11 @@ for i = 1:(EndFramePos(1)-1)
     end 
 end
 
-%%
-
+%
 F1FluoNum=sum(LocArry_s(:,end)==1);
 ConsectiveNum=ones(1,F1FluoNum);
 
 for i=1:F1FluoNum
-    
     CurID=i;
     NextID=BackwardId(CurID);
         
@@ -99,5 +95,5 @@ plot(FiducialFluo_XYPosArry(:,1))
 figure
 plot(FiducialFluo_XYPosArry(:,2))
 
-save FiducialFluo_LinkData BackwardId BackwardId ConsectiveNum FiducialFluoId FiducialFluoNum FiducialFluo_XYPosArry
+% save FiducialFluo_LinkData BackwardId BackwardId ConsectiveNum FiducialFluoId FiducialFluoNum FiducialFluo_XYPosArry
 
